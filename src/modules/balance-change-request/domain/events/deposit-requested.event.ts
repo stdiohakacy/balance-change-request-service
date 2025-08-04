@@ -1,6 +1,6 @@
 import { BaseDomainEvent, DomainEventProps } from '../../../../libs/domain';
 import { PaymentMethod } from '../enums/payment-method.enum';
-import { Money } from '../value-obiects/money.vo';
+import { Money } from '../value-objects/money.vo';
 
 export class DepositRequestedDomainEvent extends BaseDomainEvent {
     readonly requestId: string;

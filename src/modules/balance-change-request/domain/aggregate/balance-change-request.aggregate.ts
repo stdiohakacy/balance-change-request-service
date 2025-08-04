@@ -7,7 +7,7 @@ import { RequestStatus } from '../enums/request-status.enum';
 import { RequestType } from '../enums/request-type.enum';
 import { DepositApprovedDomainEvent } from '../events/deposit-approved.event';
 import { DepositRejectedDomainEvent } from '../events/deposit-rejected.event';
-import { Money } from '../value-obiects/money.vo';
+import { Money } from '../value-objects/money.vo';
 
 interface CreateBalanceChangeRequestProps {
     userId: string;

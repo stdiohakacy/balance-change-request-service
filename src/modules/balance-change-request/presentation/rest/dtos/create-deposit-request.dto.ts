@@ -1,24 +1,24 @@
 import {
-    IsEnum,
-    IsNotEmpty,
-    IsNumber,
-    IsOptional,
-    IsString,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
 } from 'class-validator';
 import { PaymentMethodDto } from './payment-method.dto';
 
 export class CreateDepositRequestDto {
-    @IsNumber()
-    amount: number;
+  @IsNumber()
+  amount: number;
 
-    @IsString()
-    @IsNotEmpty()
-    currency: string;
+  @IsString()
+  @IsNotEmpty()
+  currency: string;
 
-    @IsEnum(PaymentMethodDto)
-    method: PaymentMethodDto;
+  @IsEnum(PaymentMethodDto)
+  method: PaymentMethodDto;
 
-    @IsOptional()
-    @IsString()
-    remarks?: string;
+  @IsOptional()
+  @IsString()
+  remarks?: string;
 }
