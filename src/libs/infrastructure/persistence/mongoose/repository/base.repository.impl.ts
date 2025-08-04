@@ -15,15 +15,7 @@ export abstract class BaseRepositoryImpl<TDomain, TDocument>
     constructor(
         protected readonly model: Model<TDocument>,
         protected readonly mapper: MapperInterface<TDomain, TDocument>
-    ) {
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-        console.log(this.mapper);
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-    }
+    ) {}
 
     async findOneById(
         id: string
