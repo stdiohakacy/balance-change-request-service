@@ -4,17 +4,9 @@ import { CommonModule } from 'src/common/common.module';
 import { MigrationApiKeySeed } from 'src/migration/seeds/migration.api-key.seed';
 import { ApiKeyModule } from 'src/modules/api-key/api-key.module';
 import { AuthModule } from 'src/modules/auth/auth.module';
-import { CountryModule } from 'src/modules/country/country.module';
 
 @Module({
-    imports: [
-        CommonModule,
-        CommandModule,
-        ApiKeyModule,
-        CountryModule,
-        AuthModule,
-        CountryModule,
-    ],
+    imports: [CommonModule, CommandModule, ApiKeyModule, AuthModule],
     providers: [MigrationApiKeySeed],
     exports: [],
 })

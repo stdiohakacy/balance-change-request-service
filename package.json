@@ -25,10 +25,8 @@
         "package:upgrade": "npx npm-check-updates -u",
         "package:check": "npx npm-check-updates -i",
         "migrate:schema": "APP_ENV=migration nest start",
-        "migrate:seed": "APP_ENV=migration nestjs-command seed:country && nestjs-command seed:apikey && nestjs-command seed:role && nestjs-command seed:user",
-        "migrate:remove": "APP_ENV=migration nestjs-command remove:country && nestjs-command remove:apikey && nestjs-command remove:user && nestjs-command remove:role",
-        "migrate:template": "nestjs-command migrate:template",
-        "rollback:template": "nestjs-command rollback:template"
+        "migrate:seed": "APP_ENV=migration nestjs-command seed:apikey",
+        "migrate:remove": "APP_ENV=migration nestjs-command remove:apikey"
     },
     "dependencies": {
         "@faker-js/faker": "^9.4.0",
@@ -39,6 +37,7 @@
         "@nestjs/common": "^11.0.7",
         "@nestjs/config": "^4.0.0",
         "@nestjs/core": "^11.0.7",
+        "@nestjs/cqrs": "^11.0.3",
         "@nestjs/jwt": "^11.0.0",
         "@nestjs/mongoose": "^11.0.1",
         "@nestjs/passport": "^11.0.5",
@@ -59,6 +58,7 @@
         "class-validator": "^0.14.1",
         "compression": "^1.7.5",
         "crypto-js": "^4.2.0",
+        "eventemitter2": "^6.4.9",
         "helmet": "^8.0.0",
         "luxon": "^3.5.0",
         "mongodb": "^6.18.0",
@@ -66,6 +66,7 @@
         "nestjs-command": "^3.1.4",
         "nestjs-i18n": "^10.5.0",
         "nestjs-pino": "^4.3.0",
+        "oxide.ts": "^1.1.0",
         "passport": "^0.7.0",
         "passport-jwt": "^4.0.1",
         "pino-http": "^10.4.0",
@@ -73,6 +74,7 @@
         "reflect-metadata": "^0.2.2",
         "response-time": "^2.3.3",
         "rxjs": "^7.8.1",
+        "typeorm": "^0.3.25",
         "xlsx": "^0.18.5",
         "yargs": "^17.7.2"
     },
