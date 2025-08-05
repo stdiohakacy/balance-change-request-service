@@ -137,13 +137,12 @@ export class ApiKeyService implements IApiKeyService {
     ): Promise<ApiKeyCreateResponseDto> {
         const hash: string = await this.createHashApiKey(key, secret);
 
-        const data: ApiKeyEntity = new ApiKeyEntity();
+        const data = new ApiKeyEntity();
         data.name = name;
         data.key = key;
         data.hash = hash;
         data.isActive = true;
         data.type = type;
-
         if (startDate && endDate) {
             data.startDate = this.helperDateService.create(startDate, {
                 dayOf: ENUM_HELPER_DATE_DAY_OF.START,

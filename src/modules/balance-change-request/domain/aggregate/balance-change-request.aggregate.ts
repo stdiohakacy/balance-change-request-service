@@ -110,8 +110,7 @@ export class BalanceChangeRequest extends BaseAggregateRoot<BalanceChangeRequest
         this.markUpdated();
 
         const event = new DepositApprovedDomainEvent({
-            aggregateId: this.id.toString(),
-            requestId: this.id.toString(),
+            aggregateId: this.id.getValue(),
             eventName: 'DepositApproved',
             version: 1,
             approvedBy: '4ebfe2e7-3f8e-47b8-96a7-cornalf341e83',
@@ -133,8 +132,7 @@ export class BalanceChangeRequest extends BaseAggregateRoot<BalanceChangeRequest
         this.props.rejectedAt = new Date();
 
         const event = new DepositRejectedDomainEvent({
-            aggregateId: this.id.toString(),
-            requestId: this.id.toString(),
+            aggregateId: this.id.getValue(),
             eventName: 'DepositRejected',
             version: 1,
             rejectedBy: 'cornal-admin-uuid',

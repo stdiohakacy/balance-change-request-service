@@ -28,8 +28,9 @@ export class BalanceChangeRequestMapper
 
     toPersistence(aggregate: BalanceChangeRequest): BalanceChangeRequestDoc {
         const props: BalanceChangeRequestProps = aggregate['props'];
+
         return {
-            id: aggregate.id.toString(),
+            _id: aggregate.id.getValue(),
             userId: props.userId,
             type: props.type,
             amountValue: props.amount.value,

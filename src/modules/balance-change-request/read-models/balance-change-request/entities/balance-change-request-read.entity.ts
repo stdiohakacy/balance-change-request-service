@@ -5,7 +5,7 @@ import {
 } from 'src/common/database/decorators/database.decorator';
 import { DatabaseEntityBase } from 'src/common/database/bases/database.entity';
 import { IDatabaseDocument } from 'src/common/database/interfaces/database.interface';
-import { BALANCE_CHANGE_REQUEST_READ_SCHEMA } from '../../schema/balance-change-request-read.schema';
+import { BALANCE_CHANGE_REQUEST_READ_SCHEMA } from '../schema/balance-change-request-read.schema';
 
 @DatabaseEntity({ collection: BALANCE_CHANGE_REQUEST_READ_SCHEMA.TABLE_NAME })
 export class BalanceChangeRequestReadModel extends DatabaseEntityBase {

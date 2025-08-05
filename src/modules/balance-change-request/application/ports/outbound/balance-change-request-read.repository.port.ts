@@ -1,7 +1,7 @@
 import {
     BalanceChangeRequestReadDoc,
     BalanceChangeRequestReadModel,
-} from '@modules/balance-change-request/infrastructure/persistence/mongoose/entities/balance-change-request-read.entity';
+} from '@modules/balance-change-request/read-models/balance-change-request/entities/balance-change-request-read.entity';
 
 export const BALANCE_CHANGE_REQUEST_READ_REPOSITORY_PORT = Symbol(
     'BALANCE_CHANGE_REQUEST_READ_REPOSITORY_PORT'

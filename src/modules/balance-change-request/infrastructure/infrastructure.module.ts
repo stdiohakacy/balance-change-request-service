@@ -11,6 +11,12 @@ import { EVENT_PUBLISHER_PORT } from '../application/ports/outbound/event-publis
 import { BalanceChangeRequestMapper } from './persistence/mappers/balance-change-request.mapper';
 import { KafkaPublisherAdapter } from './messaging/kafka/publishers/kafka.publisher.adapter';
 import { DepositRequestedPublisher } from './messaging/kafka/publishers/deposit-requested.publisher.service';
+import { BALANCE_CHANGE_REQUEST_READ_REPOSITORY_PORT } from '../application/ports/outbound/balance-change-request-read.repository.port';
+import { BalanceChangeRequestReadRepositoryAdapter } from '../read-models/balance-change-request/repository/balance-change-request-read.repository.adapter';
+import {
+    BalanceChangeRequestReadModel,
+    BalanceChangeRequestReadSchema,
+} from '../read-models/balance-change-request/entities/balance-change-request-read.entity';
 
 const providers = [
     BalanceChangeRequestMapper,
@@ -18,6 +24,10 @@ const providers = [
     {
         provide: BALANCE_CHANGE_REQUEST_REPOSITORY_PORT,
         useClass: BalanceChangeRequestRepositoryAdapter,
+    },
+    {
+        provide: BALANCE_CHANGE_REQUEST_READ_REPOSITORY_PORT,
+        useClass: BalanceChangeRequestReadRepositoryAdapter,
     },
     {
         provide: EVENT_PUBLISHER_PORT,
@@ -32,6 +42,10 @@ const providers = [
                 {
                     name: BalanceChangeRequestEntity.name,
                     schema: BalanceChangeRequestSchema,
+                },
+                {
+                    name: BalanceChangeRequestReadModel.name,
+                    schema: BalanceChangeRequestReadSchema,
                 },
             ],
             DATABASE_CONNECTION_NAME

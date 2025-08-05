@@ -1,4 +1,4 @@
-import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { Ok, Result } from 'oxide.ts';
 import { UniqueEntityID } from '@libs/domain/unique-entity-id';
 import { ExceptionBase } from '@libs/exceptions';
@@ -26,7 +26,8 @@ export class CreateDepositRequestHandler
         @Inject(BALANCE_CHANGE_REQUEST_REPOSITORY_PORT)
         private readonly balanceChangeRequestRepositoryPort: BalanceChangeRequestRepositoryPort,
         @Inject(DepositRequestedPublisher)
-        private readonly depositRequestedPublisher: DepositRequestedPublisher
+        private readonly depositRequestedPublisher: DepositRequestedPublisher,
+        private readonly eventBus: EventBus
     ) {}
 
     async execute(
@@ -43,16 +44,16 @@ export class CreateDepositRequestHandler
                 depositRequest
             );
         if (resultOrError.isErr()) return resultOrError;
-
         const domainEvent = depositRequest.domainEvents.find(
             e => e instanceof DepositRequestedDomainEvent
         ) as DepositRequestedDomainEvent;
 
-        const event = IntegrationEventFactory.mapFrom(
+        const integrationEvent = IntegrationEventFactory.mapFrom(
             domainEvent
         ) as DepositRequestedIntegrationEvent;
 
-        await this.depositRequestedPublisher.publish(event);
+        await this.eventBus.publish(domainEvent);
+        await this.depositRequestedPublisher.publish(integrationEvent);
 
         return Ok<UniqueEntityID<string>>(depositRequest.id);
     }

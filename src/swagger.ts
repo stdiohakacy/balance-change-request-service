@@ -8,7 +8,7 @@ import { ENUM_APP_ENVIRONMENT } from 'src/app/enums/app.enum';
 export default async function (app: NestApplication) {
     const configService = app.get(ConfigService);
     const env: string = configService.get<string>('app.env');
-    const logger = new Logger('NestJs-Swagger');
+    const logger = new Logger('Balance Change Request Swagger');
 
     const docName: string = configService.get<string>('doc.name');
     const docDesc: string = configService.get<string>('doc.description');
