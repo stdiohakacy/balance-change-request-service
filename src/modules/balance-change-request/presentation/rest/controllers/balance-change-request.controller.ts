@@ -14,11 +14,19 @@ import { DepositRequestCreateDoc } from '../docs/balance-change-request.doc';
 import { Response } from '@common/response/decorators/response.decorator';
 import { ApiTags } from '@nestjs/swagger';
 import { BalanceChangeRequestResponseMapper } from '../../mappers/balance-change-request.response.mapper';
+import {
+    ViewOwnTransactionHistoryQuery,
+    ViewOwnTransactionHistoryQueryProps,
+} from '@modules/balance-change-request/application/ports/inbound/queries/view-own-transaction-history.query';
+import { BalanceChangeRequestReadModel } from '@modules/balance-change-request/read-models/balance-change-request/entities/balance-change-request-read.entity';
 
 @ApiTags('modules.balance-change-request')
 @Controller('balance-change-requests')
 export class BalanceChangeRequestController {
-    constructor(private readonly commandBus: CommandBus) {}
+    constructor(
+        private readonly commandBus: CommandBus,
+        private readonly queryBus: QueryBus
+    ) {}
 
     @DepositRequestCreateDoc()
     @Response('balanceChangeRequest.createDepositRequest')
@@ -39,6 +47,30 @@ export class BalanceChangeRequestController {
         return match(result, {
             Ok: (id: UniqueEntityID<string>) =>
                 BalanceChangeRequestResponseMapper.toCreatedResponse(id),
+            Err: (error: Error) => {
+                throw DomainToRestErrorMapper.map(error);
+            },
+        });
+    }
+
+    @Get('/:userId/transactions')
+    async viewOwnTransactionHistory(@Param('userId') userId: string) {
+        const queryProps = plainToInstance(
+            ViewOwnTransactionHistoryQueryProps,
+            {
+                userId,
+            }
+        );
+
+        const result = await this.queryBus.execute(
+            new ViewOwnTransactionHistoryQuery(queryProps)
+        );
+
+        return match(result, {
+            Ok: (transactions: BalanceChangeRequestReadModel[]) =>
+                BalanceChangeRequestResponseMapper.toTransactionHistoryResponse(
+                    transactions
+                ),
             Err: (error: Error) => {
                 throw DomainToRestErrorMapper.map(error);
             },

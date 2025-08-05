@@ -4,9 +4,11 @@ import {
     BalanceChangeRequestReadModel,
     BalanceChangeRequestReadDoc,
 } from '../entities/balance-change-request-read.entity';
-import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { InjectDatabaseModel } from '@common/database/decorators/database.decorator';
+import { Ok, Result } from 'oxide.ts';
+import { ExceptionBase } from '@libs/exceptions';
+import { Void } from '@libs/types';
 
 @Injectable()
 export class BalanceChangeRequestReadRepositoryAdapter
@@ -17,10 +19,19 @@ export class BalanceChangeRequestReadRepositoryAdapter
         private readonly model: Model<BalanceChangeRequestReadDoc>
     ) {}
 
-    async insert(data: Partial<BalanceChangeRequestReadModel>): Promise<void> {
+    async insert(
+        data: Partial<BalanceChangeRequestReadModel>
+    ): Promise<Result<void, ExceptionBase>> {
         await this.model.create(data);
+        return Ok(Void);
     }
-    async findByUserId(userId: string): Promise<BalanceChangeRequestReadDoc[]> {
-        return this.model.find({ userId }).exec();
+    async findByUserId(
+        userId: string
+    ): Promise<Result<BalanceChangeRequestReadModel[], ExceptionBase>> {
+        const docs = await this.model.find({ userId }).exec();
+        const models = docs.map(
+            doc => doc.toObject() as BalanceChangeRequestReadModel
+        );
+        return Ok(models);
     }
 }

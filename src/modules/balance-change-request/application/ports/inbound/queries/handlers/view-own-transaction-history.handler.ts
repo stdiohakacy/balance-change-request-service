@@ -5,7 +5,9 @@ import {
     BALANCE_CHANGE_REQUEST_READ_REPOSITORY_PORT,
     BalanceChangeRequestReadRepositoryPort,
 } from '../../../outbound/balance-change-request-read.repository.port';
-import { BalanceChangeRequestReadDoc } from '@modules/balance-change-request/read-models/balance-change-request/entities/balance-change-request-read.entity';
+import { Result } from 'oxide.ts';
+import { BalanceChangeRequestReadModel } from '@modules/balance-change-request/read-models/balance-change-request/entities/balance-change-request-read.entity';
+import { ExceptionBase } from '@libs/exceptions';
 
 @QueryHandler(ViewOwnTransactionHistoryQuery)
 export class ViewOwnTransactionHistoryHandler
@@ -18,7 +20,7 @@ export class ViewOwnTransactionHistoryHandler
 
     async execute(
         query: ViewOwnTransactionHistoryQuery
-    ): Promise<BalanceChangeRequestReadDoc[]> {
+    ): Promise<Result<BalanceChangeRequestReadModel[], ExceptionBase>> {
         return this.balanceChangeRequestReadRepoPort.findByUserId(
             query.props.userId
         );
