@@ -12,15 +12,15 @@ import { UniqueEntityID } from '@libs/domain/unique-entity-id';
 import { DomainToRestErrorMapper } from '../../mappers/error-response.mapper';
 import { DepositRequestCreateDoc } from '../docs/balance-change-request.doc';
 import { Response } from '@common/response/decorators/response.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('modules.balance-change-request')
 @Controller('balance-change-requests')
 export class BalanceChangeRequestController {
     constructor(private readonly commandBus: CommandBus) {}
 
     @DepositRequestCreateDoc()
-    @Response('apiKey.create')
-    // @AuthJwtAccessProtected()
-    // @ApiKeyProtected()
+    @Response('balanceChangeRequest.createDepositRequest')
     @Post('/deposit')
     async createDepositRequest(@Body() body: CreateDepositRequestDto) {
         const commandProps = plainToInstance(
