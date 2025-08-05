@@ -12,7 +12,7 @@ import { BalanceChangeRequestMapper } from '@modules/balance-change-request/pres
 import { DepositRequestedDomainEvent } from '@modules/balance-change-request/domain/events/deposit-requested.event';
 import { IntegrationEventFactory } from '@modules/balance-change-request/infrastructure/messaging/integration-event.factory';
 import { DepositRequestedIntegrationEvent } from '../../../outbound/events/deposit-requested.event';
-import { BalanceChangeRequestPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/deposit-requested.publisher.service';
+import { BalanceChangeRequestPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/balance-change-request.publisher.service';
 
 @CommandHandler(CreateDepositRequestCommand)
 export class CreateDepositRequestHandler

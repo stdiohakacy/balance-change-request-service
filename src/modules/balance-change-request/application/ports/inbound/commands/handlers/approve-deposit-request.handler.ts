@@ -7,7 +7,7 @@ import {
     BALANCE_CHANGE_REQUEST_REPOSITORY_PORT,
     BalanceChangeRequestRepositoryPort,
 } from '../../../outbound/balance-change-request.repository.port';
-import { BalanceChangeRequestPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/deposit-requested.publisher.service';
+import { BalanceChangeRequestPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/balance-change-request.publisher.service';
 import { ApproveDepositRequestCommand } from '../approve-deposit-request.command';
 
 @CommandHandler(ApproveDepositRequestCommand)
