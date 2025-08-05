@@ -13,18 +13,18 @@ import {
     PaginationQuery,
     PaginationQueryFilterInBoolean,
     PaginationQueryFilterInEnum,
-} from 'src/common/pagination/decorators/pagination.decorator';
-import { PaginationListDto } from 'src/common/pagination/dtos/pagination.list.dto';
-import { PaginationService } from 'src/common/pagination/services/pagination.service';
-import { RequestRequiredPipe } from 'src/common/request/pipes/request.required.pipe';
+} from '@common/pagination/decorators/pagination.decorator';
+import { PaginationListDto } from '@common/pagination/dtos/pagination.list.dto';
+import { PaginationService } from '@common/pagination/services/pagination.service';
+import { RequestRequiredPipe } from '@common/request/pipes/request.required.pipe';
 import {
     Response,
     ResponsePaging,
-} from 'src/common/response/decorators/response.decorator';
+} from '@common/response/decorators/response.decorator';
 import {
     IResponse,
     IResponsePaging,
-} from 'src/common/response/interfaces/response.interface';
+} from '@common/response/interfaces/response.interface';
 import { ENUM_API_KEY_TYPE } from 'src/modules/api-key/enums/api-key.enum';
 import {
     API_KEY_DEFAULT_AVAILABLE_SEARCH,

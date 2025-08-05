@@ -4,17 +4,17 @@ import {
     IPaginationFilterEqualOptions,
     IPaginationFilterOptions,
     IPaginationQueryOptions,
-} from 'src/common/pagination/interfaces/pagination.interface';
-import { PaginationFilterDateBetweenPipe } from 'src/common/pagination/pipes/pagination.filter-date-between.pipe';
-import { PaginationFilterEqualPipe } from 'src/common/pagination/pipes/pagination.filter-equal.pipe';
-import { PaginationFilterInBooleanPipe } from 'src/common/pagination/pipes/pagination.filter-in-boolean.pipe';
-import { PaginationFilterInEnumPipe } from 'src/common/pagination/pipes/pagination.filter-in-enum.pipe';
-import { PaginationFilterNinEnumPipe } from 'src/common/pagination/pipes/pagination.filter-nin-enum.pipe';
-import { PaginationFilterNotEqualPipe } from 'src/common/pagination/pipes/pagination.filter-not-equal.pipe';
-import { PaginationFilterStringContainPipe } from 'src/common/pagination/pipes/pagination.filter-string-contain.pipe';
-import { PaginationOrderPipe } from 'src/common/pagination/pipes/pagination.order.pipe';
-import { PaginationPagingPipe } from 'src/common/pagination/pipes/pagination.paging.pipe';
-import { PaginationSearchPipe } from 'src/common/pagination/pipes/pagination.search.pipe';
+} from '@common/pagination/interfaces/pagination.interface';
+import { PaginationFilterDateBetweenPipe } from '@common/pagination/pipes/pagination.filter-date-between.pipe';
+import { PaginationFilterEqualPipe } from '@common/pagination/pipes/pagination.filter-equal.pipe';
+import { PaginationFilterInBooleanPipe } from '@common/pagination/pipes/pagination.filter-in-boolean.pipe';
+import { PaginationFilterInEnumPipe } from '@common/pagination/pipes/pagination.filter-in-enum.pipe';
+import { PaginationFilterNinEnumPipe } from '@common/pagination/pipes/pagination.filter-nin-enum.pipe';
+import { PaginationFilterNotEqualPipe } from '@common/pagination/pipes/pagination.filter-not-equal.pipe';
+import { PaginationFilterStringContainPipe } from '@common/pagination/pipes/pagination.filter-string-contain.pipe';
+import { PaginationOrderPipe } from '@common/pagination/pipes/pagination.order.pipe';
+import { PaginationPagingPipe } from '@common/pagination/pipes/pagination.paging.pipe';
+import { PaginationSearchPipe } from '@common/pagination/pipes/pagination.search.pipe';
 
 export function PaginationQuery(
     options?: IPaginationQueryOptions

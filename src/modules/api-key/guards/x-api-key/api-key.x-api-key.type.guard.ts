@@ -5,7 +5,7 @@ import {
     BadRequestException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { IRequestApp } from 'src/common/request/interfaces/request.interface';
+import { IRequestApp } from '@common/request/interfaces/request.interface';
 import { API_KEY_X_TYPE_META_KEY } from 'src/modules/api-key/constants/api-key.constant';
 import { ENUM_API_KEY_TYPE } from 'src/modules/api-key/enums/api-key.enum';
 import { ENUM_API_KEY_STATUS_CODE_ERROR } from 'src/modules/api-key/enums/api-key.status-code.enum';

@@ -2,9 +2,9 @@ import {
     DatabaseEntity,
     DatabaseProp,
     DatabaseSchema,
-} from 'src/common/database/decorators/database.decorator';
-import { DatabaseEntityBase } from 'src/common/database/bases/database.entity';
-import { IDatabaseDocument } from 'src/common/database/interfaces/database.interface';
+} from '@common/database/decorators/database.decorator';
+import { DatabaseEntityBase } from '@common/database/bases/database.entity';
+import { IDatabaseDocument } from '@common/database/interfaces/database.interface';
 import { BALANCE_CHANGE_REQUEST_SCHEMA } from '../../schema/balance-change-requests.schema';
 
 @DatabaseEntity({ collection: BALANCE_CHANGE_REQUEST_SCHEMA.TABLE_NAME })

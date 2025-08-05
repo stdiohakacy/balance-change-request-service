@@ -1,33 +1,33 @@
 import { ClientSession, Document, PopulateOptions } from 'mongoose';
-import { IPaginationOrder } from 'src/common/pagination/interfaces/pagination.interface';
+import { IPaginationOrder } from '@common/pagination/interfaces/pagination.interface';
 
 export interface IDatabaseQueryContainOptions {
-  fullWord: boolean;
+    fullWord: boolean;
 }
 
 export type IDatabaseDocument<T> = T & Document;
 
 // Find
 export interface IDatabaseOptions {
-  select?: Record<string, boolean | number> | string;
-  join?: boolean | PopulateOptions | PopulateOptions[];
-  session?: ClientSession;
-  withDeleted?: boolean;
+    select?: Record<string, boolean | number> | string;
+    join?: boolean | PopulateOptions | PopulateOptions[];
+    session?: ClientSession;
+    withDeleted?: boolean;
 }
 
 export interface IDatabaseFindOneOptions extends IDatabaseOptions {
-  order?: IPaginationOrder;
+    order?: IPaginationOrder;
 }
 
 export type IDatabaseGetTotalOptions = Omit<IDatabaseOptions, 'select'>;
 
 export interface IDatabaseFindAllPagingOptions {
-  limit: number;
-  offset: number;
+    limit: number;
+    offset: number;
 }
 
 export interface IDatabaseFindAllOptions extends IDatabaseFindOneOptions {
-  paging?: IDatabaseFindAllPagingOptions;
+    paging?: IDatabaseFindAllPagingOptions;
 }
 
 // Action
@@ -39,20 +39,20 @@ export type IDatabaseSaveOptions = Pick<IDatabaseOptions, 'session'>;
 // Bulk
 export type IDatabaseCreateManyOptions = Pick<IDatabaseOptions, 'session'>;
 export interface IDatabaseUpdateManyOptions
-  extends Pick<IDatabaseOptions, 'session' | 'withDeleted'> {
-  upsert?: boolean;
+    extends Pick<IDatabaseOptions, 'session' | 'withDeleted'> {
+    upsert?: boolean;
 }
 export type IDatabaseDeleteManyOptions = Pick<
-  IDatabaseOptions,
-  'session' | 'withDeleted'
+    IDatabaseOptions,
+    'session' | 'withDeleted'
 >;
 
 // Raw
 export type IDatabaseAggregateOptions = Pick<
-  IDatabaseOptions,
-  'session' | 'withDeleted'
+    IDatabaseOptions,
+    'session' | 'withDeleted'
 >;
 export type IDatabaseFindAllAggregateOptions = Omit<
-  IDatabaseFindAllOptions,
-  'join' | 'select'
+    IDatabaseFindAllOptions,
+    'join' | 'select'
 >;

@@ -1,8 +1,8 @@
 import { Controller, Get, VERSION_NEUTRAL } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { HelperDateService } from 'src/common/helper/services/helper.date.service';
-import { Response } from 'src/common/response/decorators/response.decorator';
-import { IResponse } from 'src/common/response/interfaces/response.interface';
+import { HelperDateService } from '@common/helper/services/helper.date.service';
+import { Response } from '@common/response/decorators/response.decorator';
+import { IResponse } from '@common/response/interfaces/response.interface';
 import { ApiKeyProtected } from 'src/modules/api-key/decorators/api-key.decorator';
 import { HelloDoc } from 'src/modules/hello/docs/hello.doc';
 import { HelloResponseDto } from 'src/modules/hello/dtos/response/hello.response.dto';

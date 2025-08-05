@@ -9,8 +9,8 @@ import {
     DocRequest,
     DocResponse,
     DocResponsePaging,
-} from 'src/common/doc/decorators/doc.decorator';
-import { ENUM_DOC_REQUEST_BODY_TYPE } from 'src/common/doc/enums/doc.enum';
+} from '@common/doc/decorators/doc.decorator';
+import { ENUM_DOC_REQUEST_BODY_TYPE } from '@common/doc/enums/doc.enum';
 import {
     ApiKeyDocParamsId,
     ApiKeyDocQueryIsActive,
@@ -24,7 +24,7 @@ import { ApiKeyCreateResponseDto } from 'src/modules/api-key/dtos/response/api-k
 import { ApiKeyGetResponseDto } from 'src/modules/api-key/dtos/response/api-key.get.response.dto';
 import { ApiKeyListResponseDto } from 'src/modules/api-key/dtos/response/api-key.list.response.dto';
 import { ApiKeyResetResponseDto } from 'src/modules/api-key/dtos/response/api-key.reset.dto';
-import { DatabaseIdResponseDto } from 'src/common/database/dtos/response/database.id.response.dto';
+import { DatabaseIdResponseDto } from '@common/database/dtos/response/database.id.response.dto';
 
 export function ApiKeyAdminListDoc(): MethodDecorator {
     return applyDecorators(

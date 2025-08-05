@@ -1,13 +1,13 @@
 import { NestApplication, NestFactory } from '@nestjs/core';
 import { Logger, VersioningType } from '@nestjs/common';
-import { AppModule } from 'src/app/app.module';
+import { AppModule } from '@app/app.module';
 import { ConfigService } from '@nestjs/config';
 import { useContainer, validate } from 'class-validator';
 import swaggerInit from 'src/swagger';
 import { plainToInstance } from 'class-transformer';
-import { AppEnvDto } from 'src/app/dtos/app.env.dto';
-import { MessageService } from 'src/common/message/services/message.service';
-import { ENUM_APP_ENVIRONMENT } from 'src/app/enums/app.enum';
+import { AppEnvDto } from '@app/dtos/app.env.dto';
+import { MessageService } from '@common/message/services/message.service';
+import { ENUM_APP_ENVIRONMENT } from '@app/enums/app.enum';
 import compression from 'compression';
 import { Logger as PinoLogger } from 'nestjs-pino';
 

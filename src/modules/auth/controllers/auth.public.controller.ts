@@ -1,9 +1,9 @@
 import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from 'src/modules/auth/services/auth.service';
-import { InjectDatabaseConnection } from 'src/common/database/decorators/database.decorator';
+import { InjectDatabaseConnection } from '@common/database/decorators/database.decorator';
 import { Connection } from 'mongoose';
-import { MessageService } from 'src/common/message/services/message.service';
+import { MessageService } from '@common/message/services/message.service';
 
 @ApiTags('modules.public.auth')
 @Controller({

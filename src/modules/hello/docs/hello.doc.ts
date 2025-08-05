@@ -3,7 +3,7 @@ import {
     Doc,
     DocAuth,
     DocResponse,
-} from 'src/common/doc/decorators/doc.decorator';
+} from '@common/doc/decorators/doc.decorator';
 import { HelloResponseDto } from 'src/modules/hello/dtos/response/hello.response.dto';
 
 export function HelloDoc(): MethodDecorator {

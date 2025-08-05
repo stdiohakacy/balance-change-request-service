@@ -6,25 +6,25 @@ import {
 } from '@nestjs/common';
 import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ValidationError } from 'class-validator';
-import { RequestValidationException } from 'src/common/request/exceptions/request.validation.exception';
-import { RequestTimeoutInterceptor } from 'src/common/request/interceptors/request.timeout.interceptor';
+import { RequestValidationException } from '@common/request/exceptions/request.validation.exception';
+import { RequestTimeoutInterceptor } from '@common/request/interceptors/request.timeout.interceptor';
 import {
     DateGreaterThanConstraint,
     DateGreaterThanEqualConstraint,
-} from 'src/common/request/validations/request.date-greater-than.validation';
+} from '@common/request/validations/request.date-greater-than.validation';
 import {
     DateLessThanConstraint,
     DateLessThanEqualConstraint,
-} from 'src/common/request/validations/request.date-less-than.validation';
+} from '@common/request/validations/request.date-less-than.validation';
 import {
     GreaterThanEqualOtherPropertyConstraint,
     GreaterThanOtherPropertyConstraint,
-} from 'src/common/request/validations/request.greater-than-other-property.validation';
-import { IsPasswordConstraint } from 'src/common/request/validations/request.is-password.validation';
+} from '@common/request/validations/request.greater-than-other-property.validation';
+import { IsPasswordConstraint } from '@common/request/validations/request.is-password.validation';
 import {
     LessThanEqualOtherPropertyConstraint,
     LessThanOtherPropertyConstraint,
-} from 'src/common/request/validations/request.less-than-other-property.validation';
+} from '@common/request/validations/request.less-than-other-property.validation';
 
 @Module({})
 export class RequestModule {

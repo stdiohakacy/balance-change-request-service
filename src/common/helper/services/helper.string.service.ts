@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { IHelperStringPasswordOptions } from 'src/common/helper/interfaces/helper.interface';
-import { IHelperStringService } from 'src/common/helper/interfaces/helper.string-service.interface';
+import { IHelperStringPasswordOptions } from '@common/helper/interfaces/helper.interface';
+import { IHelperStringService } from '@common/helper/interfaces/helper.string-service.interface';
 
 @Injectable()
 export class HelperStringService implements IHelperStringService {

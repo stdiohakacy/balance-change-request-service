@@ -20,8 +20,11 @@
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "paths": {
+            "@common/*": ["src/common/*"],
+            "@configs/*": ["src/configs/*"],
             "@libs/*": ["src/libs/*"],
-            "@modules/*": ["src/modules/*"]
+            "@modules/*": ["src/modules/*"],
+            "@app/*": ["src/app/*"],
         }
     },
     "include": ["src", "test"],

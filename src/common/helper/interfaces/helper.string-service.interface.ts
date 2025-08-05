@@ -1,4 +1,4 @@
-import { IHelperStringPasswordOptions } from 'src/common/helper/interfaces/helper.interface';
+import { IHelperStringPasswordOptions } from '@common/helper/interfaces/helper.interface';
 
 export interface IHelperStringService {
     randomReference(length: number): string;

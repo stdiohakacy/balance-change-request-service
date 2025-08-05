@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
 import { Params } from 'nestjs-pino';
-import { ENUM_APP_ENVIRONMENT } from 'src/app/enums/app.enum';
-import { HelperDateService } from 'src/common/helper/services/helper.date.service';
-import { LOGGER_SENSITIVE_FIELDS } from 'src/common/logger/constants/logger.constant';
-import { IRequestApp } from 'src/common/request/interfaces/request.interface';
+import { ENUM_APP_ENVIRONMENT } from '@app/enums/app.enum';
+import { HelperDateService } from '@common/helper/services/helper.date.service';
+import { LOGGER_SENSITIVE_FIELDS } from '@common/logger/constants/logger.constant';
+import { IRequestApp } from '@common/request/interfaces/request.interface';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()

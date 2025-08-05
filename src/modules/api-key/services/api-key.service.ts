@@ -9,10 +9,10 @@ import {
     IDatabaseGetTotalOptions,
     IDatabaseSaveOptions,
     IDatabaseUpdateManyOptions,
-} from 'src/common/database/interfaces/database.interface';
-import { HelperDateService } from 'src/common/helper/services/helper.date.service';
-import { HelperHashService } from 'src/common/helper/services/helper.hash.service';
-import { HelperStringService } from 'src/common/helper/services/helper.string.service';
+} from '@common/database/interfaces/database.interface';
+import { HelperDateService } from '@common/helper/services/helper.date.service';
+import { HelperHashService } from '@common/helper/services/helper.hash.service';
+import { HelperStringService } from '@common/helper/services/helper.string.service';
 import {
     ApiKeyCreateRawRequestDto,
     ApiKeyCreateRequestDto,
@@ -30,7 +30,7 @@ import {
 } from 'src/modules/api-key/repository/entities/api-key.entity';
 import { ApiKeyRepository } from 'src/modules/api-key/repository/repositories/api-key.repository';
 import { Document } from 'mongoose';
-import { ENUM_HELPER_DATE_DAY_OF } from 'src/common/helper/enums/helper.enum';
+import { ENUM_HELPER_DATE_DAY_OF } from '@common/helper/enums/helper.enum';
 
 @Injectable()
 export class ApiKeyService implements IApiKeyService {

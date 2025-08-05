@@ -3,8 +3,8 @@ import {
     Doc,
     DocRequest,
     DocResponse,
-} from 'src/common/doc/decorators/doc.decorator';
-import { ENUM_DOC_REQUEST_BODY_TYPE } from 'src/common/doc/enums/doc.enum';
+} from '@common/doc/decorators/doc.decorator';
+import { ENUM_DOC_REQUEST_BODY_TYPE } from '@common/doc/enums/doc.enum';
 
 export function DepositRequestCreateDoc(): MethodDecorator {
     return applyDecorators(

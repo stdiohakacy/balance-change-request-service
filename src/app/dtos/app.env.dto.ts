@@ -9,11 +9,8 @@ import {
     IsUrl,
     MinLength,
 } from 'class-validator';
-import {
-    ENUM_APP_ENVIRONMENT,
-    ENUM_APP_TIMEZONE,
-} from 'src/app/enums/app.enum';
-import { ENUM_MESSAGE_LANGUAGE } from 'src/common/message/enums/message.enum';
+import { ENUM_APP_ENVIRONMENT, ENUM_APP_TIMEZONE } from '@app/enums/app.enum';
+import { ENUM_MESSAGE_LANGUAGE } from '@common/message/enums/message.enum';
 
 export class AppEnvDto {
     @IsString()

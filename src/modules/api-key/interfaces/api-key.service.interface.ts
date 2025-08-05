@@ -6,7 +6,7 @@ import {
     IDatabaseOptions,
     IDatabaseSaveOptions,
     IDatabaseUpdateManyOptions,
-} from 'src/common/database/interfaces/database.interface';
+} from '@common/database/interfaces/database.interface';
 import {
     ApiKeyCreateRawRequestDto,
     ApiKeyCreateRequestDto,

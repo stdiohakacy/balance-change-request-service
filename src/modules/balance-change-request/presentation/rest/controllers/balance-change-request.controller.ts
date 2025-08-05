@@ -11,13 +11,14 @@ import {
 import { UniqueEntityID } from '@libs/domain/unique-entity-id';
 import { DomainToRestErrorMapper } from '../../mappers/error-response.mapper';
 import { DepositRequestCreateDoc } from '../docs/balance-change-request.doc';
+import { Response } from '@common/response/decorators/response.decorator';
 
 @Controller('balance-change-requests')
 export class BalanceChangeRequestController {
     constructor(private readonly commandBus: CommandBus) {}
 
     @DepositRequestCreateDoc()
-    // @Response('apiKey.create')
+    @Response('apiKey.create')
     // @AuthJwtAccessProtected()
     // @ApiKeyProtected()
     @Post('/deposit')

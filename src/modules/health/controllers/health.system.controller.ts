@@ -9,9 +9,9 @@ import {
 } from '@nestjs/terminus';
 import { Connection } from 'mongoose';
 import { ApiKeySystemProtected } from 'src/modules/api-key/decorators/api-key.decorator';
-import { InjectDatabaseConnection } from 'src/common/database/decorators/database.decorator';
-import { Response } from 'src/common/response/decorators/response.decorator';
-import { IResponse } from 'src/common/response/interfaces/response.interface';
+import { InjectDatabaseConnection } from '@common/database/decorators/database.decorator';
+import { Response } from '@common/response/decorators/response.decorator';
+import { IResponse } from '@common/response/interfaces/response.interface';
 import { HealthDatabaseResponseDto } from 'src/modules/health/dtos/response/health.database.response.dto';
 import {
     HealthSystemCheckDatabaseDoc,

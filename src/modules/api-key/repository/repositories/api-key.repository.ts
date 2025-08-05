@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { DatabaseRepositoryBase } from 'src/common/database/bases/database.repository';
-import { InjectDatabaseModel } from 'src/common/database/decorators/database.decorator';
+import { DatabaseRepositoryBase } from '@common/database/bases/database.repository';
+import { InjectDatabaseModel } from '@common/database/decorators/database.decorator';
 import {
     ApiKeyDoc,
     ApiKeyEntity,

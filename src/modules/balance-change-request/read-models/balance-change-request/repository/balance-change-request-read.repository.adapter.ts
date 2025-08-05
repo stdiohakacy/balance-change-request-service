@@ -6,7 +6,7 @@ import {
 } from '../entities/balance-change-request-read.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { InjectDatabaseModel } from 'src/common/database/decorators/database.decorator';
+import { InjectDatabaseModel } from '@common/database/decorators/database.decorator';
 
 @Injectable()
 export class BalanceChangeRequestReadRepositoryAdapter

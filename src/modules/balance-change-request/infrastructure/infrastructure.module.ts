@@ -6,7 +6,7 @@ import {
     BalanceChangeRequestEntity,
     BalanceChangeRequestSchema,
 } from './persistence/mongoose/entities/balance-change-requests.entity';
-import { DATABASE_CONNECTION_NAME } from 'src/common/database/constants/database.constant';
+import { DATABASE_CONNECTION_NAME } from '@common/database/constants/database.constant';
 import { EVENT_PUBLISHER_PORT } from '../application/ports/outbound/event-publisher.port';
 import { BalanceChangeRequestMapper } from './persistence/mappers/balance-change-request.mapper';
 import { KafkaPublisherAdapter } from './messaging/kafka/publishers/kafka.publisher.adapter';
