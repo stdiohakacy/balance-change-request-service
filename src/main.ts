@@ -34,7 +34,7 @@ async function bootstrap() {
         'app.urlVersion.enable'
     );
 
-    const logger = new Logger('NestJs-Main');
+    const logger = new Logger('Balance Change Request Service');
     process.env.NODE_ENV = env;
     process.env.TZ = timezone;
 

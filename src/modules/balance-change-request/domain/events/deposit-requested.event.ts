@@ -3,7 +3,6 @@ import { PaymentMethod } from '../enums/payment-method.enum';
 import { Money } from '../value-objects/money.vo';
 
 export class DepositRequestedDomainEvent extends BaseDomainEvent {
-    readonly requestId: string;
     readonly requestedBy: string;
     readonly amount: Money;
     readonly method: PaymentMethod;
@@ -14,7 +13,6 @@ export class DepositRequestedDomainEvent extends BaseDomainEvent {
 
     constructor(props: DomainEventProps<DepositRequestedDomainEvent>) {
         super(props);
-        this.requestId = props.aggregateId;
         this.requestedBy = props.requestedBy;
         this.amount = props.amount;
         this.method = props.method;

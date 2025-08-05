@@ -8,7 +8,7 @@ import { BalanceChangeRequest } from '@modules/balance-change-request/domain/agg
 import { BalanceChangeRequestRepositoryPort } from '@modules/balance-change-request/application/ports/outbound/balance-change-request.repository.port';
 import { InjectDatabaseModel } from 'src/common/database/decorators/database.decorator';
 import { Model } from 'mongoose';
-import { BalanceChangeRequestMapper } from '@modules/balance-change-request/infrastructure/mappers/balance-change-request.mapper';
+import { BalanceChangeRequestMapper } from '../../mappers/balance-change-request.mapper';
 
 @Injectable()
 export class BalanceChangeRequestRepositoryAdapter

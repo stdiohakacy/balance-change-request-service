@@ -7,7 +7,7 @@ import {
 import { RequestType } from '@modules/balance-change-request/domain/enums/request-type.enum';
 import { PaymentMethod } from '@modules/balance-change-request/domain/enums/payment-method.enum';
 import { Money } from '@modules/balance-change-request/domain/value-objects/money.vo';
-import { BalanceChangeRequestDoc } from '../persistence/typeorm/entities/balance-change-requests.entity';
+import { BalanceChangeRequestDoc } from '../typeorm/entities/balance-change-requests.entity';
 
 @Injectable()
 export class BalanceChangeRequestMapper

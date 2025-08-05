@@ -8,6 +8,7 @@ import { RequestType } from '../enums/request-type.enum';
 import { DepositApprovedDomainEvent } from '../events/deposit-approved.event';
 import { DepositRejectedDomainEvent } from '../events/deposit-rejected.event';
 import { Money } from '../value-objects/money.vo';
+import { DepositRequestedDomainEvent } from '../events/deposit-requested.event';
 
 interface CreateBalanceChangeRequestProps {
     userId: string;
@@ -48,6 +49,20 @@ export class BalanceChangeRequest extends BaseAggregateRoot<BalanceChangeRequest
             updatedAt: now,
         });
         request.validate();
+
+        if (props.type === RequestType.DEPOSIT) {
+            const event = new DepositRequestedDomainEvent({
+                aggregateId: request.id.getValue(),
+                eventName: 'DepositRequested',
+                version: 1,
+                requestedBy: props.userId,
+                amount: props.amount,
+                method: props.method,
+                occurredAt: now,
+            });
+            request.addEvent(event);
+        }
+
         return request;
     }
 
@@ -99,7 +114,7 @@ export class BalanceChangeRequest extends BaseAggregateRoot<BalanceChangeRequest
             requestId: this.id.toString(),
             eventName: 'DepositApproved',
             version: 1,
-            approvedBy: 'cornal-admin-uuid',
+            approvedBy: '4ebfe2e7-3f8e-47b8-96a7-cornalf341e83',
             approvedAt: this.props.approvedAt,
             occurredAt: new Date(),
         });
@@ -135,7 +150,7 @@ export class BalanceChangeRequest extends BaseAggregateRoot<BalanceChangeRequest
     public markAsProcessed(): void {
         if (this.props.status !== RequestStatus.APPROVED) {
             throw new ArgumentNotProvidedException(
-                'Request must be pending to process'
+                'Request must be approved to mark as processed'
             );
         }
         this.props.status = RequestStatus.PROCESSED;

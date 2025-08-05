@@ -1,4 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { Ok, Result } from 'oxide.ts';
+import { UniqueEntityID } from '@libs/domain/unique-entity-id';
+import { ExceptionBase } from '@libs/exceptions';
 import { Inject } from '@nestjs/common';
 import { CreateDepositRequestCommand } from '../create-deposit-request.command';
 import {
@@ -6,9 +9,8 @@ import {
     BalanceChangeRequestRepositoryPort,
 } from '../../../outbound/balance-change-request.repository.port';
 import { BalanceChangeRequestMapper } from '@modules/balance-change-request/presentation/mappers/balance-change-request.mapper';
-import { Ok, Result } from 'oxide.ts';
-import { UniqueEntityID } from '@libs/domain/unique-entity-id';
-import { ExceptionBase } from '@libs/exceptions';
+import { DepositRequestedPublisher } from '@modules/balance-change-request/application/services/deposit-requested.event-publisher.service';
+import { DepositRequestedDomainEvent } from '@modules/balance-change-request/domain/events/deposit-requested.event';
 
 @CommandHandler(CreateDepositRequestCommand)
 export class CreateDepositRequestHandler
@@ -20,7 +22,9 @@ export class CreateDepositRequestHandler
 {
     constructor(
         @Inject(BALANCE_CHANGE_REQUEST_REPOSITORY_PORT)
-        private readonly balanceChangeRequestRepositoryPort: BalanceChangeRequestRepositoryPort
+        private readonly balanceChangeRequestRepositoryPort: BalanceChangeRequestRepositoryPort,
+        @Inject(DepositRequestedPublisher)
+        private readonly depositRequestedPublisher: DepositRequestedPublisher
     ) {}
 
     async execute(
@@ -32,12 +36,17 @@ export class CreateDepositRequestHandler
             props,
             '513af0c9-79c6-4c00-a525-008a6adfda3b'
         );
-
         const resultOrError =
             await this.balanceChangeRequestRepositoryPort.insert(
                 depositRequest
             );
         if (resultOrError.isErr()) return resultOrError;
+
+        await this.depositRequestedPublisher.publish(
+            depositRequest.domainEvents.find(
+                e => e instanceof DepositRequestedDomainEvent
+            )
+        );
 
         return Ok<UniqueEntityID<string>>(depositRequest.id);
     }
