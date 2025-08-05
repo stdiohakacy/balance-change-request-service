@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Query } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Query, Put } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { plainToInstance } from 'class-transformer';
 import { match, Result } from 'oxide.ts';
@@ -23,6 +23,11 @@ import {
 } from '@modules/balance-change-request/application/ports/inbound/queries/view-own-transaction-history.query';
 import { BalanceChangeRequestReadModel } from '@modules/balance-change-request/read-models/balance-change-request/entities/balance-change-request-read.entity';
 import { ViewOwnTransactionHistoryDto } from '../dtos/view-own-transaction-history.dto';
+import { ApproveDepositRequestDto } from '../dtos/approve-deposit-request.dto';
+import {
+    ApproveDepositRequestCommand,
+    ApproveDepositRequestCommandProps,
+} from '@modules/balance-change-request/application/ports/inbound/commands/approve-deposit-request.command';
 
 @ApiTags('modules.balance-change-request')
 @Controller('balance-change-requests')
@@ -55,6 +60,21 @@ export class BalanceChangeRequestController {
                 throw DomainToRestErrorMapper.map(error);
             },
         });
+    }
+
+    @Put('/deposit/:requestId/approve')
+    async approveDepositRequest(@Body() body: ApproveDepositRequestDto) {
+        const commandProps = plainToInstance(
+            ApproveDepositRequestCommandProps,
+            body
+        );
+
+        const result: Result<
+            UniqueEntityID<string>,
+            ExceptionBase
+        > = await this.commandBus.execute(
+            new ApproveDepositRequestCommand(commandProps)
+        );
     }
 
     @ViewOwnTransactionHistoryDoc()

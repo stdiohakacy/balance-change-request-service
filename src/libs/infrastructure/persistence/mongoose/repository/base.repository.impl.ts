@@ -8,9 +8,12 @@ import {
 } from 'src/libs/exceptions';
 import { Void } from 'src/libs/types';
 import { MapperInterface } from '@libs/domain/mapper.interface';
+import { UniqueEntityID } from '@libs/domain/unique-entity-id';
 
-export abstract class BaseRepositoryImpl<TDomain, TDocument>
-    implements BaseRepositoryPort<TDomain>
+export abstract class BaseRepositoryImpl<
+    TDomain extends { _id: UniqueEntityID<string> },
+    TDocument,
+> implements BaseRepositoryPort<TDomain>
 {
     constructor(
         protected readonly model: Model<TDocument>,
@@ -92,15 +95,16 @@ export abstract class BaseRepositoryImpl<TDomain, TDocument>
     }
 
     async update(entity: TDomain): Promise<Result<void, ExceptionBase>> {
-        if (!entity || !(entity as any)._id) {
+        if (!entity || !entity._id) {
             return Err(
                 new ArgumentNotProvidedException('Entity must be provided')
             );
         }
         try {
             const doc = this.mapper.toPersistence(entity);
+
             await this.model
-                .updateOne({ _id: (entity as any)._id }, doc)
+                .updateOne({ _id: entity._id.getValue() }, doc)
                 .exec();
             return Ok(Void);
         } catch (error) {

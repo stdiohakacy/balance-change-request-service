@@ -8,22 +8,26 @@ import { RequestType } from '@modules/balance-change-request/domain/enums/reques
 import { PaymentMethod } from '@modules/balance-change-request/domain/enums/payment-method.enum';
 import { Money } from '@modules/balance-change-request/domain/value-objects/money.vo';
 import { BalanceChangeRequestDoc } from '../mongoose/entities/balance-change-requests.entity';
+import { UniqueEntityID } from '@libs/domain/unique-entity-id';
 
 @Injectable()
 export class BalanceChangeRequestMapper
     implements MapperInterface<BalanceChangeRequest, BalanceChangeRequestDoc>
 {
     toDomain(entity: BalanceChangeRequestDoc): BalanceChangeRequest {
-        return BalanceChangeRequest.create({
-            userId: entity.userId,
-            type: entity.type as RequestType,
-            amount: new Money({
-                value: Number(entity.amountValue),
-                currency: entity.amountCurrency,
-            }),
-            method: entity.method as PaymentMethod,
-            remarks: entity.remarks,
-        });
+        return BalanceChangeRequest.create(
+            {
+                userId: entity.userId,
+                type: entity.type as RequestType,
+                amount: new Money({
+                    value: Number(entity.amountValue),
+                    currency: entity.amountCurrency,
+                }),
+                method: entity.method as PaymentMethod,
+                remarks: entity.remarks,
+            },
+            new UniqueEntityID(entity._id)
+        );
     }
 
     toPersistence(aggregate: BalanceChangeRequest): BalanceChangeRequestDoc {
