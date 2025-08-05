@@ -3,7 +3,7 @@ import {
     EventPublisherPort,
     EVENT_PUBLISHER_PORT,
 } from '../ports/outbound/event-publisher.port';
-import { DepositRequestedDomainEvent } from '../../domain/events/deposit-requested.event';
+import { DepositRequestedIntegrationEvent } from '../ports/outbound/events/deposit-requested.event';
 
 @Injectable()
 export class DepositRequestedPublisher {
@@ -12,7 +12,7 @@ export class DepositRequestedPublisher {
         private readonly publisher: EventPublisherPort
     ) {}
 
-    async publish(event: DepositRequestedDomainEvent): Promise<void> {
+    async publish(event: DepositRequestedIntegrationEvent): Promise<void> {
         await this.publisher.publish(event, 'balance.deposit.requested');
     }
 }

@@ -11,6 +11,8 @@ import {
 import { BalanceChangeRequestMapper } from '@modules/balance-change-request/presentation/mappers/balance-change-request.mapper';
 import { DepositRequestedPublisher } from '@modules/balance-change-request/application/services/deposit-requested.event-publisher.service';
 import { DepositRequestedDomainEvent } from '@modules/balance-change-request/domain/events/deposit-requested.event';
+import { IntegrationEventFactory } from '@modules/balance-change-request/application/services/integration-event.factory';
+import { DepositRequestedIntegrationEvent } from '../../../outbound/events/deposit-requested.event';
 
 @CommandHandler(CreateDepositRequestCommand)
 export class CreateDepositRequestHandler
@@ -42,11 +44,15 @@ export class CreateDepositRequestHandler
             );
         if (resultOrError.isErr()) return resultOrError;
 
-        await this.depositRequestedPublisher.publish(
-            depositRequest.domainEvents.find(
-                e => e instanceof DepositRequestedDomainEvent
-            )
-        );
+        const domainEvent = depositRequest.domainEvents.find(
+            e => e instanceof DepositRequestedDomainEvent
+        ) as DepositRequestedDomainEvent;
+
+        const event = IntegrationEventFactory.mapFrom(
+            domainEvent
+        ) as DepositRequestedIntegrationEvent;
+
+        await this.depositRequestedPublisher.publish(event);
 
         return Ok<UniqueEntityID<string>>(depositRequest.id);
     }
