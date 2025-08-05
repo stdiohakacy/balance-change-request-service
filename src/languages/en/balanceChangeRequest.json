@@ -1,3 +1,4 @@
 {
-    "createDepositRequest": "Created Deposit Request"
+    "createDepositRequest": "Created Deposit Request",
+    "viewOwnTransactionHistory": "Succeeded fetch list transaction history."
 }

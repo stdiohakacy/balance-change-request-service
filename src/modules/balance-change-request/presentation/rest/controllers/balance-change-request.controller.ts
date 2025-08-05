@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Query } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { plainToInstance } from 'class-transformer';
 import { match, Result } from 'oxide.ts';
@@ -10,7 +10,10 @@ import {
 } from '@modules/balance-change-request/application/ports/inbound/commands/create-deposit-request.command';
 import { UniqueEntityID } from '@libs/domain/unique-entity-id';
 import { DomainToRestErrorMapper } from '../../mappers/error-response.mapper';
-import { DepositRequestCreateDoc } from '../docs/balance-change-request.doc';
+import {
+    DepositRequestCreateDoc,
+    ViewOwnTransactionHistoryDoc,
+} from '../docs/balance-change-request.doc';
 import { Response } from '@common/response/decorators/response.decorator';
 import { ApiTags } from '@nestjs/swagger';
 import { BalanceChangeRequestResponseMapper } from '../../mappers/balance-change-request.response.mapper';
@@ -19,6 +22,7 @@ import {
     ViewOwnTransactionHistoryQueryProps,
 } from '@modules/balance-change-request/application/ports/inbound/queries/view-own-transaction-history.query';
 import { BalanceChangeRequestReadModel } from '@modules/balance-change-request/read-models/balance-change-request/entities/balance-change-request-read.entity';
+import { ViewOwnTransactionHistoryDto } from '../dtos/view-own-transaction-history.dto';
 
 @ApiTags('modules.balance-change-request')
 @Controller('balance-change-requests')
@@ -53,13 +57,15 @@ export class BalanceChangeRequestController {
         });
     }
 
+    @ViewOwnTransactionHistoryDoc()
+    @Response('balanceChangeRequest.viewOwnTransactionHistory')
     @Get('/:userId/transactions')
-    async viewOwnTransactionHistory(@Param('userId') userId: string) {
+    async viewOwnTransactionHistory(
+        @Query() query: ViewOwnTransactionHistoryDto
+    ) {
         const queryProps = plainToInstance(
             ViewOwnTransactionHistoryQueryProps,
-            {
-                userId,
-            }
+            query
         );
 
         const result = await this.queryBus.execute(

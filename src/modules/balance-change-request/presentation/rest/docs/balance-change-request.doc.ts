@@ -27,3 +27,12 @@ export function DepositRequestCreateDoc(): MethodDecorator {
         )
     );
 }
+
+export function ViewOwnTransactionHistoryDoc(): MethodDecorator {
+    return applyDecorators(
+        Doc({ summary: 'View own transaction history' }),
+        DocResponse('balanceChangeRequest.viewOwnTransactionHistory', {
+            httpStatus: HttpStatus.OK,
+        })
+    );
+}
