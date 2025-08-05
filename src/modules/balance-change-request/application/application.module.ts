@@ -5,6 +5,7 @@ import { CreateDepositRequestHandler } from './ports/inbound/commands/handlers/c
 import { ViewOwnTransactionHistoryHandler } from './ports/inbound/queries/handlers/view-own-transaction-history.handler';
 import { DepositRequestedProjector } from '../read-models/balance-change-request/projector/deposit-requested.projector';
 import { ApproveDepositRequestHandler } from './ports/inbound/commands/handlers/approve-deposit-request.handler';
+import { DepositApprovedProjector } from '../read-models/balance-change-request/projector/deposit-approved.projector';
 
 const queryHandlers = [ViewOwnTransactionHistoryHandler];
 const commandHandlers = [
@@ -12,7 +13,7 @@ const commandHandlers = [
     ApproveDepositRequestHandler,
 ];
 const useCases = [];
-const eventHandlers = [DepositRequestedProjector];
+const eventHandlers = [DepositRequestedProjector, DepositApprovedProjector];
 const sagas = [];
 
 const providers = [

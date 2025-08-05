@@ -26,7 +26,7 @@ export class CreateDepositRequestHandler
         @Inject(BALANCE_CHANGE_REQUEST_REPOSITORY_PORT)
         private readonly balanceChangeRequestRepositoryPort: BalanceChangeRequestRepositoryPort,
         @Inject(BalanceChangeRequestPublisher)
-        private readonly BalanceChangeRequestPublisher: BalanceChangeRequestPublisher,
+        private readonly balanceChangeRequestPublisher: BalanceChangeRequestPublisher,
         private readonly eventBus: EventBus
     ) {}
 
@@ -53,7 +53,7 @@ export class CreateDepositRequestHandler
         ) as DepositRequestedIntegrationEvent;
 
         await this.eventBus.publish(domainEvent);
-        await this.BalanceChangeRequestPublisher.publish(integrationEvent);
+        await this.balanceChangeRequestPublisher.publish(integrationEvent);
 
         return Ok<UniqueEntityID<string>>(depositRequest.id);
     }

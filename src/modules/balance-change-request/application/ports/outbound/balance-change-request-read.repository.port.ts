@@ -12,7 +12,17 @@ export interface BalanceChangeRequestReadRepositoryPort {
     insert(
         data: Partial<BalanceChangeRequestReadModel>
     ): Promise<Result<void, ExceptionBase>>;
+
+    updateByRequestId(
+        requestId: string,
+        data: Partial<BalanceChangeRequestReadModel>
+    ): Promise<Result<void, ExceptionBase>>;
+
     findByUserId(
         userId: string
     ): Promise<Result<BalanceChangeRequestReadModel[], ExceptionBase>>;
+
+    findByRequestId(
+        requestId: string
+    ): Promise<Result<BalanceChangeRequestReadDoc, ExceptionBase>>;
 }

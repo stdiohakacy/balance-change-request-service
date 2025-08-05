@@ -25,6 +25,15 @@ export class BalanceChangeRequestReadRepositoryAdapter
         await this.model.create(data);
         return Ok(Void);
     }
+
+    async updateByRequestId(
+        requestId: string,
+        data: Partial<BalanceChangeRequestReadModel>
+    ): Promise<Result<void, ExceptionBase>> {
+        await this.model.updateOne({ requestId }, { $set: data }).exec();
+        return Ok(Void);
+    }
+
     async findByUserId(
         userId: string
     ): Promise<Result<BalanceChangeRequestReadModel[], ExceptionBase>> {
@@ -33,5 +42,15 @@ export class BalanceChangeRequestReadRepositoryAdapter
             doc => doc.toObject() as BalanceChangeRequestReadModel
         );
         return Ok(models);
+    }
+
+    async findByRequestId(
+        requestId: string
+    ): Promise<Result<BalanceChangeRequestReadDoc, ExceptionBase>> {
+        const doc = await this.model.findOne({ requestId }).exec();
+        if (!doc) {
+            // return Err(new ExceptionBase('Not Found', 404));
+        }
+        return Ok(doc);
     }
 }
