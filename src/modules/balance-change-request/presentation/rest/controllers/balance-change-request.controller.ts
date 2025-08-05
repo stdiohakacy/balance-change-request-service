@@ -13,6 +13,7 @@ import { DomainToRestErrorMapper } from '../../mappers/error-response.mapper';
 import { DepositRequestCreateDoc } from '../docs/balance-change-request.doc';
 import { Response } from '@common/response/decorators/response.decorator';
 import { ApiTags } from '@nestjs/swagger';
+import { BalanceChangeRequestResponseMapper } from '../../mappers/balance-change-request.response.mapper';
 
 @ApiTags('modules.balance-change-request')
 @Controller('balance-change-requests')
@@ -36,9 +37,8 @@ export class BalanceChangeRequestController {
         );
 
         return match(result, {
-            Ok: (id: UniqueEntityID<string>) => {
-                return id;
-            },
+            Ok: (id: UniqueEntityID<string>) =>
+                BalanceChangeRequestResponseMapper.toCreatedResponse(id),
             Err: (error: Error) => {
                 throw DomainToRestErrorMapper.map(error);
             },
