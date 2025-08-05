@@ -1,9 +1,9 @@
-import { Injectable, Inject } from '@nestjs/common';
 import {
-    EventPublisherPort,
     EVENT_PUBLISHER_PORT,
-} from '../ports/outbound/event-publisher.port';
-import { DepositRequestedIntegrationEvent } from '../ports/outbound/events/deposit-requested.event';
+    EventPublisherPort,
+} from '@modules/balance-change-request/application/ports/outbound/event-publisher.port';
+import { DepositRequestedIntegrationEvent } from '@modules/balance-change-request/application/ports/outbound/events/deposit-requested.event';
+import { Injectable, Inject } from '@nestjs/common';
 
 @Injectable()
 export class DepositRequestedPublisher {

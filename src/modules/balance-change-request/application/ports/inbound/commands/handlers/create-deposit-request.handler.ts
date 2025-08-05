@@ -9,10 +9,10 @@ import {
     BalanceChangeRequestRepositoryPort,
 } from '../../../outbound/balance-change-request.repository.port';
 import { BalanceChangeRequestMapper } from '@modules/balance-change-request/presentation/mappers/balance-change-request.mapper';
-import { DepositRequestedPublisher } from '@modules/balance-change-request/application/services/deposit-requested.event-publisher.service';
 import { DepositRequestedDomainEvent } from '@modules/balance-change-request/domain/events/deposit-requested.event';
-import { IntegrationEventFactory } from '@modules/balance-change-request/application/services/integration-event.factory';
+import { IntegrationEventFactory } from '@modules/balance-change-request/infrastructure/messaging/integration-event.factory';
 import { DepositRequestedIntegrationEvent } from '../../../outbound/events/deposit-requested.event';
+import { DepositRequestedPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/deposit-requested.publisher.service';
 
 @CommandHandler(CreateDepositRequestCommand)
 export class CreateDepositRequestHandler

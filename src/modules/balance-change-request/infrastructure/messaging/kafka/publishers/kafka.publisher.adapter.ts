@@ -3,7 +3,7 @@ import { Kafka } from 'kafkajs';
 import { EventPublisherPort } from '@modules/balance-change-request/application/ports/outbound/event-publisher.port';
 
 @Injectable()
-export class KafkaEventPublisherAdapter implements EventPublisherPort {
+export class KafkaPublisherAdapter implements EventPublisherPort {
     private readonly kafka = new Kafka({
         brokers: [process.env.KAFKA_BROKER],
         clientId: 'balance-change-request-service',
