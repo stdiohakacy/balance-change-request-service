@@ -12,7 +12,7 @@ import { BalanceChangeRequestMapper } from '@modules/balance-change-request/pres
 import { DepositRequestedDomainEvent } from '@modules/balance-change-request/domain/events/deposit-requested.event';
 import { IntegrationEventFactory } from '@modules/balance-change-request/infrastructure/messaging/integration-event.factory';
 import { DepositRequestedIntegrationEvent } from '../../../outbound/events/deposit-requested.event';
-import { DepositRequestedPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/deposit-requested.publisher.service';
+import { BalanceChangeRequestPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/deposit-requested.publisher.service';
 
 @CommandHandler(CreateDepositRequestCommand)
 export class CreateDepositRequestHandler
@@ -25,8 +25,8 @@ export class CreateDepositRequestHandler
     constructor(
         @Inject(BALANCE_CHANGE_REQUEST_REPOSITORY_PORT)
         private readonly balanceChangeRequestRepositoryPort: BalanceChangeRequestRepositoryPort,
-        @Inject(DepositRequestedPublisher)
-        private readonly depositRequestedPublisher: DepositRequestedPublisher,
+        @Inject(BalanceChangeRequestPublisher)
+        private readonly BalanceChangeRequestPublisher: BalanceChangeRequestPublisher,
         private readonly eventBus: EventBus
     ) {}
 
@@ -53,7 +53,7 @@ export class CreateDepositRequestHandler
         ) as DepositRequestedIntegrationEvent;
 
         await this.eventBus.publish(domainEvent);
-        await this.depositRequestedPublisher.publish(integrationEvent);
+        await this.BalanceChangeRequestPublisher.publish(integrationEvent);
 
         return Ok<UniqueEntityID<string>>(depositRequest.id);
     }

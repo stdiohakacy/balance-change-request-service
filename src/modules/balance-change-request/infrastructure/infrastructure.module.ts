@@ -10,7 +10,7 @@ import { DATABASE_CONNECTION_NAME } from '@common/database/constants/database.co
 import { EVENT_PUBLISHER_PORT } from '../application/ports/outbound/event-publisher.port';
 import { BalanceChangeRequestMapper } from './persistence/mappers/balance-change-request.mapper';
 import { KafkaPublisherAdapter } from './messaging/kafka/publishers/kafka.publisher.adapter';
-import { DepositRequestedPublisher } from './messaging/kafka/publishers/deposit-requested.publisher.service';
+import { BalanceChangeRequestPublisher } from './messaging/kafka/publishers/deposit-requested.publisher.service';
 import { BALANCE_CHANGE_REQUEST_READ_REPOSITORY_PORT } from '../application/ports/outbound/balance-change-request-read.repository.port';
 import { BalanceChangeRequestReadRepositoryAdapter } from '../read-models/balance-change-request/repository/balance-change-request-read.repository.adapter';
 import {
@@ -20,7 +20,7 @@ import {
 
 const providers = [
     BalanceChangeRequestMapper,
-    DepositRequestedPublisher,
+    BalanceChangeRequestPublisher,
     {
         provide: BALANCE_CHANGE_REQUEST_REPOSITORY_PORT,
         useClass: BalanceChangeRequestRepositoryAdapter,

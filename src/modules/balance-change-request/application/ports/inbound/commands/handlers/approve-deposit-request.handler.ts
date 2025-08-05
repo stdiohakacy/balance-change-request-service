@@ -1,5 +1,5 @@
 import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
-import { Err, Result } from 'oxide.ts';
+import { Err, Ok, Result } from 'oxide.ts';
 import { UniqueEntityID } from '@libs/domain/unique-entity-id';
 import { ExceptionBase } from '@libs/exceptions';
 import { Inject } from '@nestjs/common';
@@ -7,7 +7,7 @@ import {
     BALANCE_CHANGE_REQUEST_REPOSITORY_PORT,
     BalanceChangeRequestRepositoryPort,
 } from '../../../outbound/balance-change-request.repository.port';
-import { DepositRequestedPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/deposit-requested.publisher.service';
+import { BalanceChangeRequestPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/deposit-requested.publisher.service';
 import { ApproveDepositRequestCommand } from '../approve-deposit-request.command';
 
 @CommandHandler(ApproveDepositRequestCommand)
@@ -21,8 +21,8 @@ export class ApproveDepositRequestHandler
     constructor(
         @Inject(BALANCE_CHANGE_REQUEST_REPOSITORY_PORT)
         private readonly balanceChangeRequestRepositoryPort: BalanceChangeRequestRepositoryPort,
-        @Inject(DepositRequestedPublisher)
-        private readonly depositRequestedPublisher: DepositRequestedPublisher,
+        @Inject(BalanceChangeRequestPublisher)
+        private readonly BalanceChangeRequestPublisher: BalanceChangeRequestPublisher,
         private readonly eventBus: EventBus
     ) {}
     async execute(
@@ -46,5 +46,9 @@ export class ApproveDepositRequestHandler
             await this.balanceChangeRequestRepositoryPort.update(request);
 
         if (resultOrError.isErr()) return resultOrError;
+
+        return Ok<UniqueEntityID<string>>(
+            new UniqueEntityID<string>(request.id.getValue())
+        );
     }
 }
