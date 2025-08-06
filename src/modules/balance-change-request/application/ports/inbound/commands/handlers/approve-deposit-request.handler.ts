@@ -6,12 +6,12 @@ import { Inject } from '@nestjs/common';
 import {
     BALANCE_CHANGE_REQUEST_REPOSITORY_PORT,
     BalanceChangeRequestRepositoryPort,
-} from '../../../outbound/balance-change-request.repository.port';
+} from '../../../outbound/repositories/balance-change-request.repository.port';
 import { BalanceChangeRequestPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/balance-change-request.publisher.service';
 import { ApproveDepositRequestCommand } from '../approve-deposit-request.command';
 import { DepositApprovedDomainEvent } from '@modules/balance-change-request/domain/events/deposit-approved.event';
 import { IntegrationEventFactory } from '@modules/balance-change-request/infrastructure/messaging/integration-event.factory';
-import { DepositApprovedIntegrationEvent } from '../../../outbound/events/deposit-approved.event';
+import { DepositApprovedIntegrationEvent } from '../../../outbound/events/types/deposit-approved.event';
 
 @CommandHandler(ApproveDepositRequestCommand)
 export class ApproveDepositRequestHandler

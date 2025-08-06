@@ -5,7 +5,7 @@ import {
 } from '../entities/balance-change-requests.entity';
 import { BaseRepositoryImpl } from '@libs/infrastructure/persistence/mongoose/repository/base.repository.impl';
 import { BalanceChangeRequest } from '@modules/balance-change-request/domain/aggregate/balance-change-request.aggregate';
-import { BalanceChangeRequestRepositoryPort } from '@modules/balance-change-request/application/ports/outbound/balance-change-request.repository.port';
+import { BalanceChangeRequestRepositoryPort } from '@modules/balance-change-request/application/ports/outbound/repositories/balance-change-request.repository.port';
 import { InjectDatabaseModel } from '@common/database/decorators/database.decorator';
 import { Model } from 'mongoose';
 import { BalanceChangeRequestMapper } from '../../mappers/balance-change-request.mapper';

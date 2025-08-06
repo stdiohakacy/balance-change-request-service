@@ -1,7 +1,7 @@
 import {
     BALANCE_CHANGE_REQUEST_READ_REPOSITORY_PORT,
     BalanceChangeRequestReadRepositoryPort,
-} from '@modules/balance-change-request/application/ports/outbound/balance-change-request-read.repository.port';
+} from '@modules/balance-change-request/application/ports/outbound/repositories/balance-change-request-read.repository.port';
 import { DepositApprovedDomainEvent } from '@modules/balance-change-request/domain/events/deposit-approved.event';
 import { Inject } from '@nestjs/common';
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';

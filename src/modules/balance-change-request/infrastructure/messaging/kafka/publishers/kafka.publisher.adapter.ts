@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Kafka } from 'kafkajs';
-import { EventPublisherPort } from '@modules/balance-change-request/application/ports/outbound/event-publisher.port';
+import { EventPublisherPort } from '@modules/balance-change-request/application/ports/outbound/events/event-publisher.port';
+import { BaseIntegrationEvent } from '@libs/infrastructure/messaging/integration.event.base';
 
 @Injectable()
 export class KafkaPublisherAdapter implements EventPublisherPort {
@@ -10,7 +11,7 @@ export class KafkaPublisherAdapter implements EventPublisherPort {
     });
     private readonly producer = this.kafka.producer();
 
-    async publish(event: object): Promise<void> {
+    async publish(event: BaseIntegrationEvent): Promise<void> {
         await this.producer.connect();
         await this.producer.send({
             topic: 'balance-change-request-events',

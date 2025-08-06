@@ -1,4 +1,4 @@
-import { BalanceChangeRequestReadRepositoryPort } from '@modules/balance-change-request/application/ports/outbound/balance-change-request-read.repository.port';
+import { BalanceChangeRequestReadRepositoryPort } from '@modules/balance-change-request/application/ports/outbound/repositories/balance-change-request-read.repository.port';
 import { Injectable } from '@nestjs/common';
 import {
     BalanceChangeRequestReadModel,

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { BALANCE_CHANGE_REQUEST_REPOSITORY_PORT } from '../application/ports/outbound/balance-change-request.repository.port';
+import { BALANCE_CHANGE_REQUEST_REPOSITORY_PORT } from '../application/ports/outbound/repositories/balance-change-request.repository.port';
 import { BalanceChangeRequestRepositoryAdapter } from './persistence/mongoose/repository/balance-change-request.repository.adapter';
 import { MongooseModule } from '@nestjs/mongoose';
 import {
@@ -7,11 +7,11 @@ import {
     BalanceChangeRequestSchema,
 } from './persistence/mongoose/entities/balance-change-requests.entity';
 import { DATABASE_CONNECTION_NAME } from '@common/database/constants/database.constant';
-import { EVENT_PUBLISHER_PORT } from '../application/ports/outbound/event-publisher.port';
+import { EVENT_PUBLISHER_PORT } from '../application/ports/outbound/events/event-publisher.port';
 import { BalanceChangeRequestMapper } from './persistence/mappers/balance-change-request.mapper';
 import { KafkaPublisherAdapter } from './messaging/kafka/publishers/kafka.publisher.adapter';
 import { BalanceChangeRequestPublisher } from './messaging/kafka/publishers/balance-change-request.publisher.service';
-import { BALANCE_CHANGE_REQUEST_READ_REPOSITORY_PORT } from '../application/ports/outbound/balance-change-request-read.repository.port';
+import { BALANCE_CHANGE_REQUEST_READ_REPOSITORY_PORT } from '../application/ports/outbound/repositories/balance-change-request-read.repository.port';
 import { BalanceChangeRequestReadRepositoryAdapter } from '../read-models/balance-change-request/repository/balance-change-request-read.repository.adapter';
 import {
     BalanceChangeRequestReadModel,

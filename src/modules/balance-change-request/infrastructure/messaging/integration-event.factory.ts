@@ -1,8 +1,8 @@
 import { BaseDomainEvent } from '@libs/domain';
 import { BaseIntegrationEvent } from '@libs/infrastructure/messaging/integration.event.base';
 import { DepositRequestedDomainEvent } from '@modules/balance-change-request/domain/events/deposit-requested.event';
-import { DepositRequestedIntegrationEvent } from '../../application/ports/outbound/events/deposit-requested.event';
-import { DepositApprovedIntegrationEvent } from '@modules/balance-change-request/application/ports/outbound/events/deposit-approved.event';
+import { DepositRequestedIntegrationEvent } from '../../application/ports/outbound/events/types/deposit-requested.event';
+import { DepositApprovedIntegrationEvent } from '@modules/balance-change-request/application/ports/outbound/events/types/deposit-approved.event';
 import { DepositApprovedDomainEvent } from '@modules/balance-change-request/domain/events/deposit-approved.event';
 
 export class IntegrationEventFactory {
@@ -21,7 +21,9 @@ export class IntegrationEventFactory {
             return new DepositApprovedIntegrationEvent(
                 domainEvent.aggregateId,
                 domainEvent.approvedBy,
-                domainEvent.approvedAt
+                domainEvent.approvedAt,
+                domainEvent.currency,
+                domainEvent.amount
             );
         }
 

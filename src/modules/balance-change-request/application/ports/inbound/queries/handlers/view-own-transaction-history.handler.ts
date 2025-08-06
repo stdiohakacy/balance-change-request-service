@@ -4,7 +4,7 @@ import { Inject } from '@nestjs/common';
 import {
     BALANCE_CHANGE_REQUEST_READ_REPOSITORY_PORT,
     BalanceChangeRequestReadRepositoryPort,
-} from '../../../outbound/balance-change-request-read.repository.port';
+} from '../../../outbound/repositories/balance-change-request-read.repository.port';
 import { Result } from 'oxide.ts';
 import { BalanceChangeRequestReadModel } from '@modules/balance-change-request/read-models/balance-change-request/entities/balance-change-request-read.entity';
 import { ExceptionBase } from '@libs/exceptions';

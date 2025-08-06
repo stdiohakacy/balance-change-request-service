@@ -116,6 +116,8 @@ export class BalanceChangeRequest extends BaseAggregateRoot<BalanceChangeRequest
             approvedBy: '4ebfe2e7-3f8e-47b8-96a7-cornalf341e83',
             approvedAt: this.props.approvedAt,
             occurredAt: new Date(),
+            amount: this.props.amount.value,
+            currency: this.props.amount.currency,
         });
 
         this.addEvent(event);

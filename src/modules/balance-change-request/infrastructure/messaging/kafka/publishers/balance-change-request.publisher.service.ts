@@ -2,7 +2,7 @@ import { BaseIntegrationEvent } from '@libs/infrastructure/messaging/integration
 import {
     EVENT_PUBLISHER_PORT,
     EventPublisherPort,
-} from '@modules/balance-change-request/application/ports/outbound/event-publisher.port';
+} from '@modules/balance-change-request/application/ports/outbound/events/event-publisher.port';
 import { Injectable, Inject } from '@nestjs/common';
 
 @Injectable()
