@@ -7,7 +7,7 @@ import {
     BALANCE_CHANGE_REQUEST_REPOSITORY_PORT,
     BalanceChangeRequestRepositoryPort,
 } from '../../../outbound/repositories/balance-change-request.repository.port';
-import { BalanceChangeRequestPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/balance-change-request.publisher.service';
+import { BalanceChangeRequestPublisher } from '@modules/balance-change-request/infrastructure/messaging/kafka/publishers/balance-change-request.publisher';
 import { ApproveDepositRequestCommand } from '../approve-deposit-request.command';
 import { DepositApprovedDomainEvent } from '@modules/balance-change-request/domain/events/deposit-approved.event';
 import { IntegrationEventFactory } from '@modules/balance-change-request/infrastructure/messaging/integration-event.factory';

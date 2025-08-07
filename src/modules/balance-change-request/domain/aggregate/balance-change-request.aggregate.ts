@@ -113,7 +113,7 @@ export class BalanceChangeRequest extends BaseAggregateRoot<BalanceChangeRequest
             aggregateId: this.id.getValue(),
             eventName: 'DepositApproved',
             version: 1,
-            approvedBy: '4ebfe2e7-3f8e-47b8-96a7-cornalf341e83',
+            approvedBy: 'f21b07cd-25d2-42a4-b0b1-4d6747b99999',
             approvedAt: this.props.approvedAt,
             occurredAt: new Date(),
             amount: this.props.amount.value,
